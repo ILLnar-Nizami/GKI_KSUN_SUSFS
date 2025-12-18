@@ -288,7 +288,7 @@ jobs:
 
     env:
       GH_TOKEN: ${{ github.token }}
-      RELEASE_NAME: "GKI Kernels With WKSU & SUSFS v1.5.12"
+      RELEASE_NAME: "GKI Kernels With KernelSU ${{ inputs.ksu_variant }} & SUSFS"
       RELEASE_BODY: ""
     steps:
     - name: Download Apache Arrow's util_free_space.sh
