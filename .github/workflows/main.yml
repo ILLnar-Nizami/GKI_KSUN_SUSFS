@@ -142,6 +142,7 @@ jobs:
         pattern: '*-Rejects'
 
     - name: Generate combined reject summary
+      continue-on-error: true
       run: |
         set -e
 
@@ -264,11 +265,12 @@ jobs:
         cat "$OUT" >> "$GITHUB_STEP_SUMMARY"
 
     - name: Upload combined reject summary
+      continue-on-error: true
       uses: actions/upload-artifact@v4
       with:
         name: Combined-Reject-Summary
         path: combined_rejects/
-        if-no-files-found: error
+        if-no-files-found: ignore
         compression-level: 9
 
   release:
