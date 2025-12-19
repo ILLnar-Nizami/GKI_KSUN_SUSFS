@@ -331,10 +331,18 @@ jobs:
               if [ -f "$KERNEL_PATCHES/wild/susfs_fix_patches/v${SUSFS_VERSION}/1_fix_base.c.patch" ]; then
                 cp $KERNEL_PATCHES/wild/susfs_fix_patches/v${SUSFS_VERSION}/1_fix_base.c.patch ./
                 patch -p1 < 1_fix_base.c.patch || true
-              else
-                # Fallback: Add susfs.h include directly if patch doesn't exist
-                if ! grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
+              fi
+              # Always ensure susfs.h include exists after patch attempt
+              if ! grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
+                echo "Adding susfs.h include to fs/proc/base.c (WKSU)..."
+                if grep -q '#include <linux/cn_proc.h>' fs/proc/base.c; then
                   sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/sched.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/sched.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/fs.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/fs.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                else
+                  sed -i '0,/#include/s/#include/#include <linux\/susfs.h>\n#include/' fs/proc/base.c
                 fi
               fi
             fi
@@ -343,11 +351,6 @@ jobs:
               if [ -f "$KERNEL_PATCHES/wild/susfs_fix_patches/v${SUSFS_VERSION}/2_fix_base.c.patch" ]; then
                 cp $KERNEL_PATCHES/wild/susfs_fix_patches/v${SUSFS_VERSION}/2_fix_base.c.patch ./
                 patch -p1 < 2_fix_base.c.patch || true
-              else
-                # Fallback: Add susfs.h include directly if patch doesn't exist
-                if ! grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
-                  sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
-                fi
               fi
             fi
 
@@ -365,11 +368,28 @@ jobs:
               sed -i -e 's/goto show_pad;/return 0;/' ./fs/proc/task_mmu.c
             fi
 
-            # Fix base.c for newer kernel versions
+            # Fix base.c for newer kernel versions - add susfs.h include
             if [[ "${{ inputs.android_version }}" == "android14" && "${{ inputs.kernel_version }}" == "6.1" && $ACTUAL_SUBLEVEL -ge 145 ]] ||
                [[ "${{ inputs.android_version }}" == "android15" && "${{ inputs.kernel_version }}" == "6.6" && $ACTUAL_SUBLEVEL -ge 98 ]]; then
               if ! grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
-                sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                echo "Adding susfs.h include to fs/proc/base.c..."
+                # Try cn_proc.h first, then fallback to other common includes
+                if grep -q '#include <linux/cn_proc.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/sched.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/sched.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/fs.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/fs.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                else
+                  # Last resort: add at top of file after first include
+                  sed -i '0,/#include/s/#include/#include <linux\/susfs.h>\n#include/' fs/proc/base.c
+                fi
+                # Verify the include was added
+                if grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
+                  echo "SUCCESS: susfs.h include added to fs/proc/base.c"
+                else
+                  echo "FAILED: Could not add susfs.h include to fs/proc/base.c"
+                fi
               fi
             fi
             ;;
@@ -397,7 +417,16 @@ jobs:
             if [[ "${{ inputs.android_version }}" == "android14" && "${{ inputs.kernel_version }}" == "6.1" && $ACTUAL_SUBLEVEL -ge 145 ]] ||
                [[ "${{ inputs.android_version }}" == "android15" && "${{ inputs.kernel_version }}" == "6.6" && $ACTUAL_SUBLEVEL -ge 98 ]]; then
               if ! grep -q '#include <linux/susfs.h>' fs/proc/base.c; then
-                sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                echo "Adding susfs.h include to fs/proc/base.c (KSU)..."
+                if grep -q '#include <linux/cn_proc.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/cn_proc.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/sched.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/sched.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                elif grep -q '#include <linux/fs.h>' fs/proc/base.c; then
+                  sed -i '/#include <linux\/fs.h>/a #include <linux/susfs.h>' fs/proc/base.c
+                else
+                  sed -i '0,/#include/s/#include/#include <linux\/susfs.h>\n#include/' fs/proc/base.c
+                fi
               fi
             fi
             ;;
