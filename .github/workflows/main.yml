@@ -312,58 +312,58 @@ jobs:
 
     - name: Set release body
       run: |
-        cat << 'EOF' > release_body.md
+        cat << 'RELEASE_EOF' > release_body.md
+        **IMPORTANT DISCLAIMER**
+        This software is provided for testing and educational purposes only. Use at your own risk.
+        The developers are not responsible for any damage, data loss, or issues that may occur.
+        Please ensure you have proper backups before installation.
 
-**IMPORTANT DISCLAIMER**
-This software is provided for testing and educational purposes only. Use at your own risk.
-The developers are not responsible for any damage, data loss, or issues that may occur.
-Please ensure you have proper backups before installation.
+        🔹 Normal
+        - Default kernel configuration
+        - Standard kernel module loading behavior
+        - Recommended for most users
 
-🔹 Normal
-- Default kernel configuration
-- Standard kernel module loading behavior
-- Recommended for most users
+        🔹 Bypass
+        - Includes module check bypass modifications
+        - What are kernel modules? Kernel modules are pieces of code that can be loaded into the kernel at runtime to extend functionality (like device drivers, filesystem support, etc.). These are different from KernelSU/Magisk modules.
+        - The Problem: Sometimes when installing a custom kernel, the device tries to load a kernel module that fails due to version mismatches, missing dependencies, or signature verification issues. This can cause boot failures or device instability.
+        - The Solution: This version changes one line from false to true to force load the kernel module, bypassing the failure check that would normally prevent loading.
 
-🔹 Bypass
-- Includes module check bypass modifications
-- What are kernel modules? Kernel modules are pieces of code that can be loaded into the kernel at runtime to extend functionality (like device drivers, filesystem support, etc.). These are different from KernelSU/Magisk modules.
-- The Problem: Sometimes when installing a custom kernel, the device tries to load a kernel module that fails due to version mismatches, missing dependencies, or signature verification issues. This can cause boot failures or device instability.
-- The Solution: This version changes one line from false to true to force load the kernel module, bypassing the failure check that would normally prevent loading.
+        Features:
+        -> KernelSU variants supported: **WKSU**, **KernelSU-Next v3.0**, **KSU**
+        -> SUSFS ඞ (WKSU: v1.5.12, Next/KSU: v2.0.0)
+        -> Multi Manager Support for WKSU, KernelSU-Next! Needs Testing: KSU, MKSU RKSU, xxKSU, KowSU and SukiSU
+        -> Scope-Minimized Manual hooks v1.4 (WKSU only)
+        -> Ptrace Patch Support for Older Kernels (<5.16)
+        -> IPSet Support for Advanced Network Filtering
+        -> Wireguard Support
+        -> BBR v1 Support
+        -> BBG support to prevent unauthorised writes to certain partitions
 
-Features:
--> KernelSU variants supported: **WKSU**, **KernelSU-Next v3.0**, **KSU**
--> SUSFS ඞ (WKSU: v1.5.12, Next/KSU: v2.0.0)
--> Multi Manager Support for WKSU, KernelSU-Next! Needs Testing: KSU, MKSU RKSU, xxKSU, KowSU and SukiSU
--> Scope-Minimized Manual hooks v1.4 (WKSU only)
--> Ptrace Patch Support for Older Kernels (<5.16)
--> IPSet Support for Advanced Network Filtering
--> Wireguard Support
--> BBR v1 Support
--> BBG support to prevent unauthorised writes to certain partitions
+        🔹 BBG (Baseband-guard)
+        - A lightweight LSM (Linux Security Module) for Android kernel
+        - Blocks unauthorized writes to critical partitions/device nodes
+        - Prevents malicious tampering with baseband and boot chain
+        - Kernel-level protection via LSM hooks
+        - Reduces risk of soft-brick/hard-brick issues
+        - https://github.com/vc-teahouse/Baseband-guard
 
-🔹 BBG (Baseband-guard)
-- A lightweight LSM (Linux Security Module) for Android kernel
-- Blocks unauthorized writes to critical partitions/device nodes
-- Prevents malicious tampering with baseband and boot chain
-- Kernel-level protection via LSM hooks
-- Reduces risk of soft-brick/hard-brick issues
-- https://github.com/vc-teahouse/Baseband-guard
+        Notes:
+        -> SUS SU Mode 2 will show as disabled or not compatible due to non-kprobe hooks and is not needed anymore!
+        -> Official Kernel Flasher is broken with latest susfs, try https://github.com/fatalcoder524/KernelFlasher/
+        -> **boot.img files**: Available as CI artifacts only - download from the Actions tab in the "Misc" Artifact
+        -> **Warning**: boot.img files may not boot on some devices
+        -> **Note:** For detailed commit information and component versions, please check the build summary in the "Misc" Artifact
 
-Notes:
--> SUS SU Mode 2 will show as disabled or not compatible due to non-kprobe hooks and is not needed anymore!
--> Official Kernel Flasher is broken with latest susfs, try https://github.com/fatalcoder524/KernelFlasher/
--> **boot.img files**: Available as CI artifacts only - download from the Actions tab in the "Misc" Artifact
--> **Warning**: boot.img files may not boot on some devices
--> **Note:** For detailed commit information and component versions, please check the build summary in the "Misc" Artifact
+        Module:
+        -> https://github.com/sidex15/ksu_module_susfs
 
-Module:
--> https://github.com/sidex15/ksu_module_susfs
-
-Managers:
--> WKSU: https://github.com/WildKernels/Wild_KSU
--> Next: https://github.com/KernelSU-Next/KernelSU-Next
--> KSU: https://github.com/tiann/KernelSU
-EOF
+        Managers:
+        -> WKSU: https://github.com/WildKernels/Wild_KSU
+        -> Next: https://github.com/KernelSU-Next/KernelSU-Next
+        -> KSU: https://github.com/tiann/KernelSU
+        RELEASE_EOF
+        sed -i 's/^        //' release_body.md
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
