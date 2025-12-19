@@ -751,6 +751,60 @@ jobs:
           exit 1
         fi
 
+        # For built-in KernelSU variants (Next/KSU), modify AnyKernel3 to clean up LKM remnants
+        # This ensures the built-in KernelSU works without being overridden by a previously patched LKM
+        if [[ "${{ inputs.ksu_variant }}" == "Next" ]] || [[ "${{ inputs.ksu_variant }}" == "KSU" ]]; then
+          echo "- Configuring AnyKernel3 for built-in KernelSU (${{ inputs.ksu_variant }})"
+
+          # Create a patch script that will clean up LKM remnants from ramdisk
+          cat > "$ANYKERNEL3/ksu_cleanup.sh" << 'CLEANUP_EOF'
+        # KernelSU LKM Cleanup for Built-in KernelSU
+        # This removes ksuinit and kernelsu.ko from ramdisk if present
+
+        cleanup_ksu_lkm() {
+          local ramdisk_dir="$1"
+          local cleaned=false
+
+          # Check and remove kernelsu.ko
+          if [ -f "$ramdisk_dir/kernelsu.ko" ]; then
+            rm -f "$ramdisk_dir/kernelsu.ko"
+            ui_print "  -> Removed kernelsu.ko from ramdisk (LKM cleanup)"
+            cleaned=true
+          fi
+
+          # Check if init is ksuinit (by checking for init.real)
+          if [ -f "$ramdisk_dir/init.real" ]; then
+            # Restore original init
+            rm -f "$ramdisk_dir/init"
+            mv "$ramdisk_dir/init.real" "$ramdisk_dir/init"
+            ui_print "  -> Restored original init from init.real (LKM cleanup)"
+            cleaned=true
+          fi
+
+          if $cleaned; then
+            ui_print "  -> LKM cleanup complete - built-in KernelSU will be used"
+          fi
+        }
+        CLEANUP_EOF
+
+          # Modify anykernel.sh to source and call the cleanup
+          sed -i '/^# boot install$/a\
+        # Source KernelSU LKM cleanup script for built-in KernelSU\
+        . tools/ksu_cleanup.sh' "$ANYKERNEL3/anykernel.sh"
+
+          # Add cleanup call after unpack_ramdisk
+          sed -i '/unpack_ramdisk/a\
+            cleanup_ksu_lkm "$ramdisk"' "$ANYKERNEL3/anykernel.sh"
+
+          # Copy the cleanup script to tools directory
+          mkdir -p "$ANYKERNEL3/tools"
+          mv "$ANYKERNEL3/ksu_cleanup.sh" "$ANYKERNEL3/tools/"
+
+          echo "- AnyKernel3 configured to clean up LKM remnants for built-in KernelSU"
+        else
+          echo "- Using standard AnyKernel3 for LKM-based KernelSU (${{ inputs.ksu_variant }})"
+        fi
+
     - name: Copy snd-aloop module
       if: ${{ inputs.variant == 'vTomsonek' }}
       run: |
