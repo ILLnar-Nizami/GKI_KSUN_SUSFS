@@ -682,24 +682,40 @@ jobs:
     - name: Change Kernel Name
       working-directory: ${{ env.KERNEL_ROOT }}
       run: |
+        # Determine KSU variant suffix for kernel version string
+        case "${{ inputs.ksu_variant }}" in
+          WKSU)
+            KSU_SUFFIX="WKSU"
+            ;;
+          Next)
+            KSU_SUFFIX="Next"
+            ;;
+          KSU)
+            KSU_SUFFIX="KSU"
+            ;;
+          *)
+            KSU_SUFFIX="Unknown"
+            ;;
+        esac
+
         #Wild to Kernel Version (replace last instance only)
         if [[ "${{ inputs.kernel_version }}" == "5."* ]] || [[ "${{ inputs.kernel_version }}" == "6.1" ]]; then
           case ${{ matrix.build_type }} in
             TheWildJames)
-              perl -i -0777 -pe 's/(.*)echo "\$res"/$1echo "\$res-🟢-Wild-Exclusive"/s' ./common/scripts/setlocalversion
+              perl -i -0777 -pe "s/(.*)echo \"\\\$res\"/\$1echo \"\\\$res-🟢-Wild-${KSU_SUFFIX}-Exclusive\"/s" ./common/scripts/setlocalversion
               ;;
             MarionKernel)
-              perl -i -0777 -pe 's/(.*)echo "\$res"/$1echo "\$res-Wild-MarionKernel"/s' ./common/scripts/setlocalversion
+              perl -i -0777 -pe "s/(.*)echo \"\\\$res\"/\$1echo \"\\\$res-Wild-${KSU_SUFFIX}-MarionKernel\"/s" ./common/scripts/setlocalversion
               ;;
             Hakan)
-              perl -i -0777 -pe 's/(.*)echo "\$res"/$1echo "\$res-Wild-Hakan"/s' ./common/scripts/setlocalversion
+              perl -i -0777 -pe "s/(.*)echo \"\\\$res\"/\$1echo \"\\\$res-Wild-${KSU_SUFFIX}-Hakan\"/s" ./common/scripts/setlocalversion
               ;;
             *)
-              perl -i -0777 -pe 's/(.*)echo "\$res"/$1echo "\$res-Wild"/s' ./common/scripts/setlocalversion
+              perl -i -0777 -pe "s/(.*)echo \"\\\$res\"/\$1echo \"\\\$res-Wild-${KSU_SUFFIX}\"/s" ./common/scripts/setlocalversion
               ;;
           esac
         else
-          perl -i -0777 -pe 's/(.*)echo "\$\{KERNELVERSION\}\$\{file_localversion\}\$\{config_localversion\}\$\{LOCALVERSION\}\$\{scm_version\}"/$1echo "\${KERNELVERSION}\${file_localversion}\${config_localversion}\${LOCALVERSION}-Wild\${scm_version}"/s' ./common/scripts/setlocalversion
+          perl -i -0777 -pe "s/(.*)echo \"\\\$\\{KERNELVERSION\\}\\\$\\{file_localversion\\}\\\$\\{config_localversion\\}\\\$\\{LOCALVERSION\\}\\\$\\{scm_version\\}\"/\$1echo \"\\\${KERNELVERSION}\\\${file_localversion}\\\${config_localversion}\\\${LOCALVERSION}-Wild-${KSU_SUFFIX}\\\${scm_version}\"/s" ./common/scripts/setlocalversion
         fi
         if [ -f "build/build.sh" ]; then
           #Remove Dirty Flag
