@@ -1,0 +1,317 @@
+sec_touch 667648 0 - Live 0x0000000000000000 (O)
+ftm5 299008 0 - Live 0x0000000000000000 (O)
+bcmdhd4389 3473408 0 - Live 0x0000000000000000 (O)
+dw3000 409600 0 - Live 0x0000000000000000 (O)
+mcps802154_region_pctt 77824 0 - Live 0x0000000000000000 (O)
+mcps802154_region_nfcc_coex 49152 0 - Live 0x0000000000000000 (O)
+mcps802154_region_fira 167936 0 - Live 0x0000000000000000 (O)
+mcps802154 270336 4 dw3000,mcps802154_region_pctt,mcps802154_region_nfcc_coex,mcps802154_region_fira, Live 0x0000000000000000 (O)
+st21nfc 32768 1 - Live 0x0000000000000000 (O)
+bbd_pps_gpio 20480 0 - Live 0x0000000000000000 (O)
+nitrous 32768 1 - Live 0x0000000000000000 (O)
+snd_soc_cs40l2x 28672 1 - Live 0x0000000000000000 (O)
+haptics_cs40l2x 159744 1 snd_soc_cs40l2x, Live 0x0000000000000000 (O)
+bigwave 61440 0 - Live 0x0000000000000000 (O)
+lwis 290816 28 - Live 0x0000000000000000 (O)
+mali_kbase 1196032 63 - Live 0x0000000000000000 (O)
+mali_pixel 28672 2 mali_kbase, Live 0x0000000000000000 (O)
+fps_touch_handler 45056 2 - Live 0x0000000000000000 (O)
+goog_touch_interface 118784 1 fps_touch_handler, Live 0x0000000000000000 (O)
+abrolhos 249856 4 - Live 0x0000000000000000 (O)
+panel_boe_nt37290 61440 0 - Live 0x0000000000000000 (O)
+panel_samsung_s6e3hc4 53248 0 - Live 0x0000000000000000 (O)
+panel_samsung_s6e3hc3_c10 40960 0 - Live 0x0000000000000000 (O)
+panel_samsung_s6e3fc3_p10 49152 0 - Live 0x0000000000000000 (O)
+panel_common 20480 0 - Live 0x0000000000000000 (O)
+gs_panel 172032 0 - Live 0x0000000000000000 (O)
+hl7132 126976 0 - Live 0x0000000000000000 (O)
+rt9471_charger 45056 0 - Live 0x0000000000000000 (O)
+max77779_fwupdate 32768 0 - Live 0x0000000000000000 (O)
+ln8411 131072 0 - Live 0x0000000000000000 (O)
+max77779_pmic_i2c 20480 0 - Live 0x0000000000000000 (O)
+max77779_pmic_sgpio 20480 0 - Live 0x0000000000000000 (O)
+max77779_pmic_pinctrl 20480 0 - Live 0x0000000000000000 (O)
+max77779_pmic_irq 20480 0 - Live 0x0000000000000000 (O)
+max77779_i2cm_i2c 20480 0 - Live 0x0000000000000000 (O)
+max77779_i2cm 16384 1 max77779_i2cm_i2c, Live 0x0000000000000000 (O)
+max77779_sp_i2c 20480 0 - Live 0x0000000000000000 (O)
+max77779_sp 16384 1 max77779_sp_i2c, Live 0x0000000000000000 (O)
+max77779_fg_i2c 20480 0 - Live 0x0000000000000000 (O)
+max77779_vimon_i2c 24576 0 - Live 0x0000000000000000 (O)
+max77779_vimon 28672 2 max77779_fwupdate,max77779_vimon_i2c, Live 0x0000000000000000 (O)
+max77779_charger_i2c 20480 0 - Live 0x0000000000000000 (O)
+google_ccd 32768 0 - Live 0x0000000000000000 (O)
+google_dock 28672 0 - Live 0x0000000000000000 (O)
+aoc_usb_driver 28672 0 - Live 0x0000000000000000 (O)
+aoc_unit_test_dev 20480 0 - Live 0x0000000000000000 (O)
+stmvl53l1 290816 1 lwis, Live 0x0000000000000000 (O)
+usb_f_etr_miu 20480 2 - Live 0x0000000000000000 (O)
+slg51000_core 24576 0 - Live 0x0000000000000000 (O)
+iovad_vendor_hooks 20480 0 [permanent], Live 0x0000000000000000 (O)
+slg51000_regulator 20480 19 - Live 0x0000000000000000 (O)
+smra 20480 0 [permanent], Live 0x0000000000000000 (O)
+pinctrl_slg51000 20480 0 - Live 0x0000000000000000 (O)
+nfc 114688 0 - Live 0x0000000000000000
+mac802154 118784 1 mcps802154, Live 0x0000000000000000
+ieee802154_socket 40960 0 - Live 0x0000000000000000
+ieee802154_6lowpan 28672 0 - Live 0x0000000000000000
+ieee802154 126976 3 mac802154,ieee802154_socket,ieee802154_6lowpan, Live 0x0000000000000000
+nhc_udp 20480 0 - Live 0x0000000000000000
+nhc_routing 20480 0 - Live 0x0000000000000000
+nhc_mobility 20480 0 - Live 0x0000000000000000
+nhc_ipv6 20480 0 - Live 0x0000000000000000
+nhc_hop 20480 0 - Live 0x0000000000000000
+nhc_fragment 20480 0 - Live 0x0000000000000000
+nhc_dest 20480 0 - Live 0x0000000000000000
+6lowpan 32768 8 ieee802154_6lowpan,nhc_udp,nhc_routing,nhc_mobility,nhc_ipv6,nhc_hop,nhc_fragment,nhc_dest, Live 0x0000000000000000
+diag 20480 0 - Live 0x0000000000000000
+tipc 380928 1 diag, Live 0x0000000000000000
+mac80211 1060864 0 - Live 0x0000000000000000
+l2tp_ppp 40960 0 - Live 0x0000000000000000
+l2tp_core 69632 1 l2tp_ppp, Live 0x0000000000000000
+hidp 53248 0 - Live 0x0000000000000000
+rfcomm 86016 0 - Live 0x0000000000000000
+can_gw 32768 0 - Live 0x0000000000000000
+can_bcm 32768 0 - Live 0x0000000000000000
+can_raw 40960 0 - Live 0x0000000000000000
+can 32768 3 can_gw,can_bcm,can_raw, Live 0x0000000000000000
+cfg80211 1085440 2 bcmdhd4389,mac80211, Live 0x0000000000000000
+8021q 45056 0 - Live 0x0000000000000000
+btsdio 20480 0 - Live 0x0000000000000000
+hci_uart 81920 0 - Live 0x0000000000000000
+btqca 24576 1 hci_uart, Live 0x0000000000000000
+btbcm 28672 1 hci_uart, Live 0x0000000000000000
+bluetooth 761856 6 hidp,rfcomm,btsdio,hci_uart,btqca,btbcm, Live 0x0000000000000000
+rfkill 40960 5 bcmdhd4389,nitrous,nfc,cfg80211,bluetooth, Live 0x0000000000000000
+ftdi_sio 65536 0 - Live 0x0000000000000000
+usbserial 49152 1 ftdi_sio, Live 0x0000000000000000
+cdc_acm 40960 0 - Live 0x0000000000000000
+r8153_ecm 20480 0 - Live 0x0000000000000000
+aqc111 32768 0 - Live 0x0000000000000000
+cdc_ncm 36864 0 - Live 0x0000000000000000
+cdc_eem 20480 0 - Live 0x0000000000000000
+cdc_ether 20480 2 r8153_ecm,cdc_ncm, Live 0x0000000000000000
+ax88179_178a 45056 0 - Live 0x0000000000000000
+asix 53248 0 - Live 0x0000000000000000
+usbnet 53248 7 r8153_ecm,aqc111,cdc_ncm,cdc_eem,cdc_ether,ax88179_178a,asix, Live 0x0000000000000000
+r8152 155648 1 r8153_ecm, Live 0x0000000000000000
+rtl8150 24576 0 - Live 0x0000000000000000
+wwan 45056 0 - Live 0x0000000000000000
+pptp 40960 0 - Live 0x0000000000000000
+pppox 24576 2 l2tp_ppp,pptp, Live 0x0000000000000000
+ppp_mppe 20480 0 - Live 0x0000000000000000
+ppp_deflate 20480 0 - Live 0x0000000000000000
+bsd_comp 20480 0 - Live 0x0000000000000000
+ppp_generic 73728 6 l2tp_ppp,pptp,pppox,ppp_mppe,ppp_deflate,bsd_comp, Live 0x0000000000000000
+slhc 20480 1 ppp_generic, Live 0x0000000000000000
+slcan 32768 0 - Live 0x0000000000000000
+vcan 20480 0 - Live 0x0000000000000000
+can_dev 53248 2 slcan,vcan, Live 0x0000000000000000
+mii 24576 4 ax88179_178a,asix,usbnet,r8152, Live 0x0000000000000000
+drm_display_helper 167936 1 gs_panel, Live 0x0000000000000000
+libarc4 20480 2 mac80211,ppp_mppe, Live 0x0000000000000000
+kheaders 4030464 0 - Live 0x0000000000000000
+gzvm 65536 0 - Live 0x0000000000000000
+aoc_alsa_dev 45056 4 - Live 0x0000000000000000 (O)
+panel_samsung_sofef01 24576 0 - Live 0x0000000000000000 (O)
+aoc_alsa_dev_util 339968 9 aoc_usb_driver,aoc_alsa_dev, Live 0x0000000000000000 (O)
+panel_samsung_s6e3hc2 40960 0 - Live 0x0000000000000000 (O)
+panel_samsung_s6e3fc3 36864 0 - Live 0x0000000000000000 (O)
+panel_samsung_emul 24576 0 - Live 0x0000000000000000 (O)
+aoc_uwb_platform_drv 20480 0 - Live 0x0000000000000000 (O)
+google_bcl 167936 2 mali_kbase,abrolhos, Live 0x0000000000000000 (O)
+panel_samsung_s6e3hc3 49152 0 - Live 0x0000000000000000 (O)
+exynos_drm_audio 32768 1 aoc_alsa_dev_util, Live 0x0000000000000000 (O)
+cpif 311296 30 - Live 0x0000000000000000 (O)
+aoc_channel_dev 32768 12 - Live 0x0000000000000000 (O)
+aoc_char_dev 24576 6 - Live 0x0000000000000000 (O)
+aoc_control_dev 32768 0 - Live 0x0000000000000000 (O)
+aoc_tbn_service_dev 20480 0 - Live 0x0000000000000000 (O)
+aoc_uwb_service_dev 20480 1 aoc_uwb_platform_drv, Live 0x0000000000000000 (O)
+exynos_coresight 28672 0 - Live 0x0000000000000000 (O)
+pca9468 126976 0 - Live 0x0000000000000000 (O)
+ehld 40960 0 - Live 0x0000000000000000 (O)
+exynos_coresight_etm 40960 1 usb_f_etr_miu, Live 0x0000000000000000 (O)
+max77759_charger 102400 1 google_bcl, Live 0x0000000000000000 (O)
+google_charger 131072 0 - Live 0x0000000000000000 (O)
+panel_samsung_drv 139264 10 goog_touch_interface,panel_boe_nt37290,panel_samsung_s6e3hc4,panel_samsung_s6e3hc3_c10,panel_samsung_s6e3fc3_p10,panel_samsung_sofef01,panel_samsung_s6e3hc2,panel_samsung_s6e3fc3,panel_samsung_emul,panel_samsung_s6e3hc3, Live 0x0000000000000000 (O)
+google_cpm 118784 0 - Live 0x0000000000000000 (O)
+acpm_mbox_test 45056 0 - Live 0x0000000000000000 (O)
+aoc_core 135168 8 aoc_usb_driver,aoc_unit_test_dev,aoc_alsa_dev_util,aoc_channel_dev,aoc_char_dev,aoc_control_dev,aoc_tbn_service_dev,aoc_uwb_service_dev, Live 0x0000000000000000 (O)
+tcpci_max77759 73728 7 hl7132,ln8411,pca9468,google_charger,google_cpm, Live 0x0000000000000000 (O)
+ufs_exynos_gs 147456 0 - Live 0x0000000000000000 (O)
+gsa_gsc 36864 1 - Live 0x0000000000000000 (O)
+max77729_pmic 53248 2 max77759_charger, Live 0x0000000000000000 (O)
+odpm_whi 40960 0 - Live 0x0000000000000000 (O)
+max77779_fg 122880 3 max77779_fwupdate,max77779_fg_i2c,google_bcl, Live 0x0000000000000000 (O)
+pcie_exynos_gs 110592 2 bcmdhd4389,cpif, Live 0x0000000000000000 (O)
+sjtag_driver 32768 3 exynos_coresight,ehld,exynos_coresight_etm, Live 0x0000000000000000 (O)
+zcomp_cpu 24576 1 - Live 0x0000000000000000 (O)
+zcomp_eh 20480 0 - Live 0x0000000000000000 (O)
+exynos_drm 565248 10 sec_touch,goog_touch_interface,panel_boe_nt37290,panel_samsung_s6e3hc4,panel_samsung_s6e3hc3_c10,panel_samsung_s6e3fc3_p10,panel_samsung_s6e3hc3,exynos_drm_audio,panel_samsung_drv, Live 0x0000000000000000 (O)
+g2d 147456 6 - Live 0x0000000000000000 (O)
+smfc 77824 2 - Live 0x0000000000000000 (O)
+gsa 45056 5 abrolhos,aoc_core,ufs_exynos_gs,gsa_gsc,sjtag_driver, Live 0x0000000000000000 (O)
+bc_max77759 16384 1 tcpci_max77759, Live 0x0000000000000000 (O)
+bcm_dbg 106496 0 - Live 0x0000000000000000 (O)
+exynos_dit 94208 1 cpif, Live 0x0000000000000000 (O)
+pixel_em 28672 0 - Live 0x0000000000000000 (O)
+dbgcore_dump 24576 0 - Live 0x0000000000000000 (O)
+exynos_adv_tracer_s2d 24576 0 - Live 0x0000000000000000 (O)
+exynos_pm 24576 1 pcie_exynos_gs, Live 0x0000000000000000 (O)
+google_battery 217088 0 - Live 0x0000000000000000 (O)
+max77779_charger 94208 4 max77779_fwupdate,max77779_charger_i2c,google_bcl,max77779_fg, Live 0x0000000000000000 (O)
+google_dual_batt_gauge 45056 0 - Live 0x0000000000000000 (O)
+max1720x_battery 172032 2 max77759_charger,max77729_pmic, Live 0x0000000000000000 (O)
+gs101_spmic_thermal 24576 0 - Live 0x0000000000000000 (O)
+hardlockup_debug 24576 0 - Live 0x0000000000000000 (O)
+max77729_uic 24576 0 - Live 0x0000000000000000 (O)
+max777x9_contaminant 16384 1 tcpci_max77759, Live 0x0000000000000000 (O)
+p9221 204800 0 - Live 0x0000000000000000 (O)
+s2mpg11_powermeter 28672 1 odpm_whi, Live 0x0000000000000000 (O)
+exynos_acme 40960 0 - Live 0x0000000000000000 (O)
+pixel_reboot 20480 0 - Live 0x0000000000000000 (O)
+rtc_s2mpg10 24576 1 - Live 0x0000000000000000 (O)
+s2mpg10_powermeter 28672 1 odpm_whi, Live 0x0000000000000000 (O)
+s2mpg10_regulator 36864 8 - Live 0x0000000000000000 (O)
+s2mpg11_regulator 32768 4 - Live 0x0000000000000000 (O)
+slc_acpm 24576 0 - Live 0x0000000000000000 (O)
+s2mpg1x_gpio 20480 10 - Live 0x0000000000000000 (O)
+exynos_devfreq 65536 3 acpm_mbox_test,exynos_drm,g2d, Live 0x0000000000000000 (O)
+tcpci_fusb307 24576 0 - Live 0x0000000000000000 (O)
+snd_soc_cs35l41_i2c 20480 0 - Live 0x0000000000000000 (O)
+snd_soc_cs35l41_spi 20480 2 - Live 0x0000000000000000 (O)
+zram_gs 61440 4 zcomp_cpu,zcomp_eh, Live 0x0000000000000000 (O)
+exynos_mfc 974848 0 - Live 0x0000000000000000 (O)
+samsung_dma_heap 53248 613 aoc_core, Live 0x0000000000000000 (O)
+acpm_flexpmu_dbg 28672 1 exynos_pm, Live 0x0000000000000000 (O)
+exynos_dm 36864 2 exynos_acme,exynos_devfreq, Live 0x0000000000000000 (O)
+usb_psy 24576 3 tcpci_max77759,bc_max77759,tcpci_fusb307, Live 0x0000000000000000 (O)
+exynos_adv_tracer 28672 5 ehld,sjtag_driver,bcm_dbg,dbgcore_dump,exynos_adv_tracer_s2d, Live 0x0000000000000000 (O)
+bts 69632 9 bigwave,lwis,mali_kbase,abrolhos,cpif,exynos_drm,g2d,smfc,exynos_mfc, Live 0x0000000000000000 (O)
+debug_snapshot_debug_kinfo 20480 0 - Live 0x0000000000000000 (O)
+debug_snapshot_qd 20480 0 - Live 0x0000000000000000 (O)
+debug_snapshot_sfrdump 20480 0 - Live 0x0000000000000000 (O)
+gs_thermal 196608 3 abrolhos,pixel_em,exynos_acme, Live 0x0000000000000000 (O)
+exynos_debug_test 32768 0 - Live 0x0000000000000000 (O)
+itmon 69632 9 bigwave,mali_kbase,aoc_core,pcie_exynos_gs,exynos_drm,g2d,bcm_dbg,exynos_dit,exynos_mfc, Live 0x0000000000000000 (O)
+exynos_ecc_handler 20480 0 - Live 0x0000000000000000 (O)
+exynos_tty 77824 1 exynos_drm, Live 0x0000000000000000 (O)
+google_bms 81920 19 hl7132,max77779_fwupdate,ln8411,max77779_sp,google_ccd,google_dock,pca9468,max77759_charger,google_charger,google_cpm,max77779_fg,max77729_pmic,google_battery,max77779_charger,google_dual_batt_gauge,max1720x_battery,max77729_uic,p9221,pixel_reboot, Live 0x0000000000000000 (O)
+s2mpg10_mfd 28672 20 google_bcl,odpm_whi,rtc_s2mpg10,pixel_reboot,s2mpg10_powermeter,s2mpg1x_gpio,s2mpg10_regulator, Live 0x0000000000000000 (O)
+gpu_cooling 36864 1 mali_kbase, Live 0x0000000000000000 (O)
+s2mpg11_mfd 28672 26 google_bcl,odpm_whi,gs101_spmic_thermal,s2mpg11_powermeter,s2mpg1x_gpio,s2mpg11_regulator, Live 0x0000000000000000 (O)
+gs_governor_memlat 24576 0 - Live 0x0000000000000000 (O)
+snd_soc_cs35l41 94208 2 snd_soc_cs35l41_i2c,snd_soc_cs35l41_spi, Live 0x0000000000000000 (O)
+s3c2410_wdt 40960 3 hardlockup_debug, Live 0x0000000000000000 (O)
+i2c_exynos5 28672 0 - Live 0x0000000000000000 (O)
+trusty_virtio 28672 0 - Live 0x0000000000000000 (O)
+keydebug 20480 1 exynos_adv_tracer_s2d, Live 0x0000000000000000 (O)
+max77759_contaminant 16384 1 max777x9_contaminant, Live 0x0000000000000000 (O)
+max77729_charger 28672 0 - Live 0x0000000000000000 (O)
+max77779_contaminant 20480 1 max777x9_contaminant, Live 0x0000000000000000 (O)
+phy_exynos_mipi 20480 8 - Live 0x0000000000000000 (O)
+pixel_stat_mm 36864 4 mali_pixel,smra,zram_gs,samsung_dma_heap,[permanent], Live 0x0000000000000000 (O)
+phy_exynos_mipi_dsim 20480 1 - Live 0x0000000000000000 (O)
+power_stats 24576 0 - Live 0x0000000000000000 (O)
+samsung_iommu 49152 21 - Live 0x0000000000000000 (O)
+sbb_mux 36864 1 ufs_exynos_gs, Live 0x0000000000000000 (O)
+trusty_ipc 81920 14 gsa,samsung_dma_heap, Live 0x0000000000000000 (O)
+xhci_exynos 32768 1 aoc_usb_driver, Live 0x0000000000000000 (O)
+slc_pmon 20480 1 slc_acpm, Live 0x0000000000000000 (O)
+slc_dummy 20480 0 - Live 0x0000000000000000 (O)
+trusty_log 28672 1 - Live 0x0000000000000000 (O)
+usbc_cooling_dev 20480 0 - Live 0x0000000000000000 (O)
+trusty_test 20480 0 - Live 0x0000000000000000 (O)
+exynos_pd_dbg 16384 0 [permanent], Live 0x0000000000000000 (O)
+exynos_pd 28672 5 mali_kbase,bcm_dbg,exynos_devfreq,debug_snapshot_sfrdump,power_stats, Live 0x0000000000000000 (O)
+clk_exynos_gs 40960 0 - Live 0x0000000000000000 (O)
+dwc3_exynos_usb 45056 3 aoc_usb_driver,xhci_exynos,exynos_pd, Live 0x0000000000000000 (O)
+shm_ipc 28672 1 cpif, Live 0x0000000000000000 (O)
+phy_exynos_usbdrd_super 86016 6 xhci_exynos,exynos_pd,dwc3_exynos_usb, Live 0x0000000000000000 (O)
+spi_s3c64xx 36864 0 - Live 0x0000000000000000 (O)
+exynos_pm_qos 36864 17 bigwave,lwis,mali_kbase,abrolhos,google_bcl,cpif,ufs_exynos_gs,pcie_exynos_gs,exynos_drm,g2d,smfc,exynos_devfreq,exynos_mfc,bts,gs_thermal,gs_governor_memlat,dwc3_exynos_usb,[permanent], Live 0x0000000000000000 (O)
+samsung_dma 16384 2 exynos_drm_audio,spi_s3c64xx, Live 0x0000000000000000 (O)
+exynos_cpupm 32768 15 nitrous,exynos_drm_audio,ehld,aoc_core,ufs_exynos_gs,pcie_exynos_gs,exynos_drm,exynos_dit,exynos_acme,itmon,exynos_tty,i2c_exynos5,exynos_pd,dwc3_exynos_usb,spi_s3c64xx, Live 0x0000000000000000 (O)
+pinctrl_exynos_gs 53248 140 exynos_pm,exynos_cpupm, Live 0x0000000000000000 (O)
+pixel_metrics 278528 3 gs101_spmic_thermal,gs_thermal,exynos_cpupm,[permanent], Live 0x0000000000000000 (O)
+vh_sched 1548288 5 pixel_em,pixel_metrics,[permanent], Live 0x0000000000000000 (O)
+cmupmucal 1564672 17 mali_kbase,abrolhos,cpif,acpm_mbox_test,exynos_drm,bcm_dbg,exynos_pm,exynos_acme,exynos_devfreq,bts,gs_thermal,gpu_cooling,exynos_pd,clk_exynos_gs,exynos_pm_qos,exynos_cpupm,vh_sched,[permanent], Live 0x0000000000000000 (O)
+gs_acpm 53248 17 ehld,acpm_mbox_test,aoc_core,exynos_pm,hardlockup_debug,pixel_reboot,slc_acpm,exynos_devfreq,acpm_flexpmu_dbg,exynos_dm,gs_thermal,s2mpg10_mfd,s2mpg11_mfd,power_stats,slc_pmon,exynos_cpupm,cmupmucal, Live 0x0000000000000000 (O)
+trusty_core 90112 5 samsung_dma_heap,trusty_virtio,trusty_ipc,trusty_log,trusty_test, Live 0x0000000000000000 (O)
+arm_dsu_pmu 28672 0 - Live 0x0000000000000000
+at24 24576 1 - Live 0x0000000000000000
+bcm47765 49152 3 - Live 0x0000000000000000 (O)
+audiometrics 36864 3 aoc_alsa_dev_util, Live 0x0000000000000000 (O)
+gvotable 49152 19 hl7132,max77779_fwupdate,ln8411,google_ccd,google_dock,pca9468,max77759_charger,google_charger,google_cpm,tcpci_max77759,google_battery,max77779_charger,google_dual_batt_gauge,p9221,tcpci_fusb307,usb_psy,max77729_charger,usbc_cooling_dev,dwc3_exynos_usb, Live 0x0000000000000000 (O)
+boot_control_sysfs 16384 0 [permanent], Live 0x0000000000000000 (O)
+boot_device_spi 24576 1 cpif, Live 0x0000000000000000 (O)
+cp_thermal_zone 20480 0 - Live 0x0000000000000000 (O)
+cpif_page 20480 1 exynos_dit, Live 0x0000000000000000 (O)
+ect_parser 61440 5 cpif,exynos_devfreq,gs_thermal,gpu_cooling,cmupmucal, Live 0x0000000000000000 (O)
+debug_reboot 24576 0 - Live 0x0000000000000000 (O)
+eh 32768 1 zcomp_eh, Live 0x0000000000000000 (O)
+exynos_bcm_dbg_dump 16384 1 bcm_dbg, Live 0x0000000000000000 (O)
+exynos_cpuhp 20480 1 gs_thermal, Live 0x0000000000000000 (O)
+exynos_mct 24576 0 - Live 0x0000000000000000 (O)
+exynos_pd_hsi0 16384 3 exynos_pd,dwc3_exynos_usb,phy_exynos_usbdrd_super, Live 0x0000000000000000 (O)
+exynos_seclog 24576 0 - Live 0x0000000000000000 (O)
+exyswd_rng 20480 0 - Live 0x0000000000000000 (O)
+goodixfp 32768 3 - Live 0x0000000000000000 (O)
+logbuffer 16384 24 nitrous,hl7132,max77779_fwupdate,ln8411,cpif,pca9468,google_charger,google_cpm,tcpci_max77759,max77779_fg,max77729_pmic,pcie_exynos_gs,bc_max77759,google_battery,google_dual_batt_gauge,max1720x_battery,max777x9_contaminant,p9221,tcpci_fusb307,usb_psy,exynos_tty,google_bms,max77759_contaminant,max77779_contaminant, Live 0x0000000000000000 (O)
+google_modemctl 16384 3 aoc_alsa_dev_util,google_bcl,cpif, Live 0x0000000000000000 (O)
+google_tcpci_shim 28672 2 tcpci_max77759,tcpci_fusb307, Live 0x0000000000000000 (O)
+gs_chipid 24576 5 acpm_mbox_test,aoc_core,exynos_drm,exynos_dit,cmupmucal, Live 0x0000000000000000 (O)
+gs_drm_connector 32768 4 sec_touch,goog_touch_interface,gs_panel,exynos_drm, Live 0x0000000000000000 (O)
+dss 106496 23 exynos_coresight,ehld,aoc_core,sjtag_driver,exynos_drm,bcm_dbg,dbgcore_dump,exynos_adv_tracer_s2d,hardlockup_debug,exynos_acme,exynos_devfreq,exynos_mfc,exynos_dm,debug_snapshot_debug_kinfo,debug_snapshot_qd,exynos_ecc_handler,exynos_debug_test,itmon,s3c2410_wdt,samsung_iommu,exynos_cpupm,cmupmucal,gs_acpm, Live 0x0000000000000000 (O)
+gs_perf_mon 32768 2 gs_governor_memlat,vh_sched, Live 0x0000000000000000 (O)
+gs_governor_utils 24576 1 gs_governor_memlat, Live 0x0000000000000000 (O)
+gsc_spi 32768 0 - Live 0x0000000000000000 (O)
+hardlockup_watchdog 24576 1 ehld, Live 0x0000000000000000 (O)
+heatmap 16384 4 sec_touch,ftm5,goog_touch_interface, Live 0x0000000000000000 (O)
+i2c_acpm 20480 0 - Live 0x0000000000000000 (O)
+i2c_dev 36864 0 - Live 0x0000000000000000
+kernel_top 16384 2 keydebug,gs_acpm, Live 0x0000000000000000 (O)
+keycombo 20480 0 - Live 0x0000000000000000 (O)
+max20339 24576 0 - Live 0x0000000000000000 (O)
+mailbox_wc 20480 16 - Live 0x0000000000000000 (O)
+max77759_helper 16384 5 tcpci_max77759,bc_max77759,max777x9_contaminant,max77759_contaminant,max77779_contaminant, Live 0x0000000000000000 (O)
+max77779_pmic 16384 8 max77779_fwupdate,max77779_pmic_i2c,max77779_pmic_sgpio,max77779_pmic_pinctrl,max77779_pmic_irq,google_bcl,max77779_fg,max77779_charger, Live 0x0000000000000000 (O)
+max77826_gs_regulator 24576 0 - Live 0x0000000000000000 (O)
+pcie_exynos_gs101_rc_cal 20480 1 pcie_exynos_gs, Live 0x0000000000000000 (O)
+pixel_suspend_diag 20480 2 debug_snapshot_debug_kinfo,dss, Live 0x0000000000000000 (O)
+pixel_boot_metrics 20480 0 - Live 0x0000000000000000 (O)
+pixel_debug_test 36864 2 dbgcore_dump,exynos_debug_test, Live 0x0000000000000000 (O)
+pl330 40960 1 samsung_dma, Live 0x0000000000000000 (O)
+pixel_stat_sysfs 16384 2 mali_pixel,pixel_stat_mm,[permanent], Live 0x0000000000000000 (O)
+pmic_class 16384 5 google_bcl,s2mpg11_powermeter,s2mpg10_powermeter,s2mpg10_regulator,s2mpg11_regulator,[permanent], Live 0x0000000000000000 (O)
+s2mpu 24576 2 cpif,pcie_exynos_gs, Live 0x0000000000000000 (O)
+samsung_iommu_group 20480 0 - Live 0x0000000000000000 (O)
+samsung_secure_iova 20480 1 samsung_dma_heap, Live 0x0000000000000000 (O)
+exynos_pmu_if 16384 16 st21nfc,mali_kbase,google_bcl,exynos_coresight,aoc_core,ufs_exynos_gs,exynos_adv_tracer_s2d,exynos_pm,exynos_adv_tracer,exynos_debug_test,s3c2410_wdt,phy_exynos_mipi,phy_exynos_mipi_dsim,exynos_cpupm,pinctrl_exynos_gs,cmupmucal, Live 0x0000000000000000 (O)
+softdog 20480 0 - Live 0x0000000000000000
+systrace 16384 9 mali_kbase,goog_touch_interface,exynos_acme,exynos_devfreq,exynos_mfc,exynos_dm,sbb_mux,pixel_metrics,gs_acpm, Live 0x0000000000000000 (O)
+sched_tp 102400 1 vh_sched, Live 0x0000000000000000 (O)
+sg 90112 3 - Live 0x0000000000000000
+exynos_pd_el3 16384 7 pcie_exynos_gs,exynos_drm,pixel_reboot,s3c2410_wdt,phy_exynos_usbdrd_super,cmupmucal,exynos_pmu_if, Live 0x0000000000000000 (O)
+slc_pt 49152 7 bigwave,lwis,mali_pixel,acpm_mbox_test,slc_acpm,exynos_mfc,slc_dummy, Live 0x0000000000000000 (O)
+slg46826 20480 1 tcpci_fusb307, Live 0x0000000000000000 (O)
+snd_soc_wm_adsp 73728 1 snd_soc_cs35l41, Live 0x0000000000000000 (O)
+touch_bus_negotiator 24576 3 sec_touch,ftm5,goog_touch_interface, Live 0x0000000000000000 (O)
+spidev 36864 0 - Live 0x0000000000000000
+st33spi 40960 0 - Live 0x0000000000000000 (O)
+sscoredump 24576 12 - Live 0x0000000000000000 (O)
+st54spi 40960 0 - Live 0x0000000000000000 (O)
+sysrq_hook 16384 0 [permanent], Live 0x0000000000000000 (O)
+touch_offload 28672 4 sec_touch,ftm5,goog_touch_interface, Live 0x0000000000000000 (O)
+ufs_pixel_fips140 28672 1 ufs_exynos_gs, Live 0x0000000000000000 (O)
+usb_f_dm1 20480 0 - Live 0x0000000000000000 (O)
+vh_thermal 16384 1 gs_thermal,[permanent], Live 0x0000000000000000 (O)
+vh_cgroup 16384 0 [permanent], Live 0x0000000000000000 (O)
+vh_fs 16384 0 [permanent], Live 0x0000000000000000 (O)
+vh_mm 32768 1 smra,[permanent], Live 0x0000000000000000 (O)
+zsmalloc 40960 1 zram_gs, Live 0x0000000000000000
+vh_preemptirq_long 24576 0 [permanent], Live 0x0000000000000000 (O)
+usb_f_dm 20480 2 - Live 0x0000000000000000 (O)
+fips140 258048 0 [permanent], Live 0x0000000000000000
+kernelsu 184320 3 - Live 0x0000000000000000 (O)

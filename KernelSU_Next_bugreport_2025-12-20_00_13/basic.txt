@@ -1,0 +1,20 @@
+Kernel: 6.1.145-android14-11-Wild-Next
+BRAND: google
+MODEL: Pixel 6
+PRODUCT: oriole_beta
+MANUFACTURER: Google
+ANDROID: 16
+SDK: 36
+PREVIEW_SDK: 0
+FINGERPRINT: google/oriole_beta/oriole:16/CP11.251114.006/14560987:user/release-keys
+DEVICE: oriole
+Manager: (v3.0.0-49-gb606f0ab-spoofed, 32906)
+SELinux: Enforcing
+KernelRelease: 6.1.145-android14-11-Wild-Next
+KernelVersion: #1 SMP PREEMPT Thu Jan  1 00:00:00 UTC 1970
+Machine: aarch64
+Nodename: localhost
+Sysname: Linux
+KernelSU: 32900
+SafeMode: false
+LKM: true

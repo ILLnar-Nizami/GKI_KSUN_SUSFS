@@ -1,0 +1,3 @@
+3.2M	/data/adb/ksu/bin
+19M	/data/adb/ksu/log
+27K	/data/adb/ksu/susfs4ksu
