@@ -97,20 +97,17 @@ runs:
         if grep -q "config NTSYNC" "$KCONFIG"; then
           echo "ntsync already in Kconfig"
         else
-          cat >> "$KCONFIG" << 'KEOF'
-
-config NTSYNC
-	tristate "NT synchronization primitive emulation"
-	depends on !UML
-	help
-	  This module provides kernel support for emulating NT synchronization
-	  primitives. This is used by Wine/Proton and Droidspaces containers
-	  to run Windows applications on Android.
-
-	  To compile this driver as a module, choose M here: the module will
-	  be called ntsync.
-
-KEOF
+          printf '\nconfig NTSYNC\n' >> "$KCONFIG"
+          printf '\ttristate "NT synchronization primitive emulation"\n' >> "$KCONFIG"
+          printf '\tdepends on !UML\n' >> "$KCONFIG"
+          printf '\thelp\n' >> "$KCONFIG"
+          printf '\t  This module provides kernel support for emulating NT synchronization\n' >> "$KCONFIG"
+          printf '\t  primitives. This is used by Wine/Proton and Droidspaces containers\n' >> "$KCONFIG"
+          printf '\t  to run Windows applications on Android.\n' >> "$KCONFIG"
+          printf '\n' >> "$KCONFIG"
+          printf '\t  To compile this driver as a module, choose M here: the module will\n' >> "$KCONFIG"
+          printf '\t  be called ntsync.\n' >> "$KCONFIG"
+          printf '\n' >> "$KCONFIG"
           echo "Added ntsync to Kconfig"
         fi
 
