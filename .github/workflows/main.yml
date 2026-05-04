@@ -45,8 +45,7 @@ on:
           - KSUN+NTSYNC
           - KSUN
           - NONE
-          - FULL
-        default: FULL
+        default: KSUN+SUSFS+BBG+NET+DS+NTSYNC
       variant:
         description: "Build Variant"
         type: choice
@@ -67,7 +66,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a12-5.10.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -77,7 +76,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a13-5.10.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -87,7 +86,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a13-5.15.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -97,7 +96,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a14-5.15.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -107,7 +106,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a14-6.1.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -117,7 +116,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a15-6.6.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
@@ -127,7 +126,7 @@ jobs:
     uses: ./.github/workflows/prepare.yml
     with:
       config_file: .github/kernel-config/a16-6.12.json
-      feature_set: ${{ inputs.feature_set || 'FULL' }}
+      feature_set: ${{ inputs.feature_set }}
       variant: ${{ inputs.variant || 'Normal' }}
       use_repo: ${{ inputs.use_repo }}
     secrets: inherit
