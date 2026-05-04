@@ -194,18 +194,7 @@ runs:
       run: |
         if [ "${{ inputs.sublevel }}" -ge "157" ]; then
           echo "Fixing dmabuf_info incomplete type errors in fs/proc/base.c (sublevel 157+)"
-          python3 -c "
-import re
-with open('fs/proc/base.c', 'r') as f:
-    content = f.read()
-content = re.sub(r'#ifdef\s+CONFIG_DMA_SHARED_BUFFER\s*\n.*?#endif\s*\n', '', content, flags=re.DOTALL)
-content = re.sub(r'[\s]*struct task_dma_buf_info\s*\{.*?\}\s*;', '', content, flags=re.DOTALL)
-content = re.sub(r'static.*proc_dma_buf_info.*?\n\{.*?\n\}', '', content, flags=re.DOTALL)
-content = re.sub(r'[^\n]*dmabuf_info[^\n]*\n', '', content)
-content = re.sub(r'[^\n]*task_show_dma_buf[^\n]*\n', '', content)
-with open('fs/proc/base.c', 'w') as f:
-    f.write(content)
-"
+          python3 -c 'import re; f=open("fs/proc/base.c","r"); c=f.read(); f.close(); c=re.sub(r"#ifdef\s+CONFIG_DMA_SHARED_BUFFER\s*\n.*?#endif\s*\n","",c,flags=re.DOTALL); c=re.sub(r"[\s]*struct task_dma_buf_info\s*\{.*?\}\s*;","",c,flags=re.DOTALL); c=re.sub(r"static.*proc_dma_buf_info.*?\n\{.*?\n\}","",c,flags=re.DOTALL); c=re.sub(r"[^\n]*dmabuf_info[^\n]*\n","",c); c=re.sub(r"[^\n]*task_show_dma_buf[^\n]*\n","",c); f=open("fs/proc/base.c","w"); f.write(c); f.close()'
         fi
 
     - name: Revert Android 12 5.10 Fake Patches
