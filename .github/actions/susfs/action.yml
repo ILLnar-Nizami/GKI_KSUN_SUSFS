@@ -189,47 +189,8 @@ runs:
       working-directory: ${{ github.workspace }}/kernel/common
       run: |
         echo "Fixing dmabuf_info incomplete type errors in fs/proc/base.c"
-        python3 << 'PYEOF'
-import re
-
-with open("fs/proc/base.c", "r") as f:
-    lines = f.readlines()
-
-result = []
-skip = False
-i = 0
-
-while i < len(lines):
-    line = lines[i]
-    stripped = line.strip()
-
-    if "#ifdef CONFIG_DMA_SHARED_BUFFER" in stripped:
-        skip = True
-        depth = 1
-        i += 1
-        while i < len(lines) and depth > 0:
-            s = lines[i].strip()
-            if s.startswith("#ifdef") or s.startswith("#if ") or s.startswith("#elif"):
-                depth += 1
-            elif s == "#endif":
-                depth -= 1
-            i += 1
-        continue
-
-    if skip:
-        skip = False
-
-    if "dmabuf_info" in stripped or "task_dma_buf" in stripped or "proc_dma_buf" in stripped or "task_show_dma_buf" in stripped or "dmabufs" in stripped or "show_dmabuf" in stripped or "dmabuf_count" in stripped or "dmabuf_rss" in stripped or "dmabuf_record" in stripped:
-        i += 1
-        continue
-
-    result.append(line)
-    i += 1
-
-with open("fs/proc/base.c", "w") as f:
-    f.writelines(result)
-
-PYEOF
+        echo "CmltcG9ydCByZSwgb3MKCmxpbmVzID0gb3BlbigiZnMvcHJvYy9iYXNlLmMiKS5yZWFkbGluZXMoKQpyZXN1bHQgPSBbXQpza2lwID0gRmFsc2UKaSA9IDAKCndoaWxlIGkgPCBsZW4obGluZXMpOgogICAgbGluZSA9IGxpbmVzW2ldCiAgICBzID0gbGluZS5zdHJpcCgpCiAgICBpZiAiI2lmZGVmIENPTkZJR19ETUFfU0hBUkVEX0JVRkZFUiIgaW4gczoKICAgICAgICBza2lwID0gVHJ1ZQogICAgICAgIGRlcHRoID0gMQogICAgICAgIGkgKz0gMQogICAgICAgIHdoaWxlIGkgPCBsZW4obGluZXMpIGFuZCBkZXB0aCA+IDA6CiAgICAgICAgICAgIHNzID0gbGluZXNbaV0uc3RyaXAoKQogICAgICAgICAgICBpZiBzcy5zdGFydHN3aXRoKCIjaWZkZWYiKSBvciBzcy5zdGFydHN3aXRoKCIjaWYgIikgb3Igc3Muc3RhcnRzd2l0aCgiI2VsaWYiKToKICAgICAgICAgICAgICAgIGRlcHRoICs9IDEKICAgICAgICAgICAgZWxpZiBzcyA9PSAiI2VuZGlmIjoKICAgICAgICAgICAgICAgIGRlcHRoIC09IDEKICAgICAgICAgICAgaSArPSAxCiAgICAgICAgY29udGludWUKICAgIGlmIHNraXA6CiAgICAgICAgc2tpcCA9IEZhbHNlCiAgICBpZiBhbnkoeCBpbiBzIGZvciB4IGluIFsiZG1hYnVmX2luZm8iLCAidGFza19kbWFfYnVmIiwgInByb2NfZG1hX2J1ZiIsICJ0YXNrX3Nob3dfZG1hX2J1ZiIsICJkbWFidWZzIiwgInNob3dfZG1hYnVmIiwgImRtYWJ1Zl9jb3VudCIsICJkbWFidWZfcnNzIiwgImRtYWJ1Zl9yZWNvcmQiXSk6CiAgICAgICAgaSArPSAxCiAgICAgICAgY29udGludWUKICAgIHJlc3VsdC5hcHBlbmQobGluZSkKICAgIGkgKz0gMQoKb3BlbigiZnMvcHJvYy9iYXNlLmMiLCAidyIpLndyaXRlbGluZXMocmVzdWx0KQo=" | base64 -d > /tmp/fix_dmabuf.py
+        python3 /tmp/fix_dmabuf.py
 
     - name: Revert Android 12 5.10 Fake Patches
       shell: bash
