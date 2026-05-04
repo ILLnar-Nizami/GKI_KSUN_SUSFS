@@ -144,8 +144,6 @@ runs:
         if [ "${{ inputs.sublevel }}" -ge "157" ]; then
           echo "Applying namespace.c Android 14 6.1 Fake Patch (sublevel 157+)"
           sed -i '/^#include <trace\/hooks\/blk.h>$/d' fs/namespace.c
-          echo "Disabling CONFIG_DMA_SHARED_BUFFER to avoid dmabuf_info incomplete type errors"
-          printf '# CONFIG_DMA_SHARED_BUFFER is not set\n' >> "${{ github.workspace }}/wild_gki.fragment"
         fi
 
     - name: Apply Android 15 6.6 Fake Patches
@@ -188,6 +186,17 @@ runs:
       working-directory: ${{ github.workspace }}/kernel/common
       run: |
         patch -p1 < 50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch || true
+
+    - name: Fix dmabuf_info for 6.1.157+
+      if: inputs.android_version == 'android14' && inputs.kernel_version == '6.1'
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel/common
+      run: |
+        if [ "${{ inputs.sublevel }}" -ge "157" ]; then
+          echo "Fixing dmabuf_info incomplete type errors in fs/proc/base.c (sublevel 157+)"
+          sed -i '/proc_dma_buf_info/,/^$/d' fs/proc/base.c
+          sed -i '/struct task_dma_buf_info/d' fs/proc/base.c
+        fi
 
     - name: Revert Android 12 5.10 Fake Patches
       shell: bash
