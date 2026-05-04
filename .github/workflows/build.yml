@@ -96,6 +96,12 @@ jobs:
         os_patch_level: ${{ steps.parse.outputs.os_patch_level }}
         sublevel: ${{ steps.extract.outputs.sublevel }}
 
+    - name: NTSYNC
+      if: contains(inputs.feature_set, 'NTSYNC') || inputs.feature_set == 'FULL'
+      uses: ./.github/actions/ntsync
+      with:
+        kernel_version: ${{ steps.parse.outputs.kernel_version }}
+
     - name: Baseband Guard
       if: contains(inputs.feature_set, 'BBG') || inputs.feature_set == 'FULL'
       uses: ./.github/actions/bbg

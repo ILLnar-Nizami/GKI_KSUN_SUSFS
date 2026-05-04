@@ -1,0 +1,130 @@
+name: 'Setup NTSYNC'
+description: 'Apply Windows NT sync driver backport from upstream v6.14 for GKI kernels'
+inputs:
+  kernel_version:
+    description: 'Kernel version (e.g., 6.1)'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check if ntsync is already in tree
+      id: check
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel/common
+      run: |
+        if [ -f "drivers/misc/ntsync.c" ]; then
+          echo "ntsync already present in kernel source"
+          echo "in_tree=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "ntsync not found, will apply backport"
+          echo "in_tree=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Apply ntsync driver backport
+      if: steps.check.outputs.in_tree == 'false'
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel/common
+      run: |
+        set -euo pipefail
+
+        TELDOMMM_NTSYNC="https://raw.githubusercontent.com/teldommm/GKI_KernelSU_SUSFS-NTSYNC/main"
+
+        echo "Attempting to fetch ntsync files..."
+
+        if curl -fsSL -o drivers/misc/ntsync.c \
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/drivers/misc/ntsync.c?h=v6.14"; then
+          echo "Fetched ntsync.c from kernel.org v6.14"
+        else
+          echo "kernel.org fetch failed, trying alternative source..."
+          curl -fsSL -o drivers/misc/ntsync.c \
+            "${TELDOMMM_NTSYNC}/kernel_patches/ntsync/ntsync.c" || {
+            echo "ERROR: Failed to fetch ntsync.c"
+            exit 1
+          }
+        fi
+
+        if curl -fsSL -o include/uapi/linux/ntsync.h \
+            "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/include/uapi/linux/ntsync.h?h=v6.14"; then
+          echo "Fetched ntsync.h from kernel.org v6.14"
+        else
+          echo "kernel.org fetch failed, trying alternative source..."
+          curl -fsSL -o include/uapi/linux/ntsync.h \
+            "${TELDOMMM_NTSYNC}/kernel_patches/ntsync/ntsync.h" || {
+            echo "ERROR: Failed to fetch ntsync.h"
+            exit 1
+          }
+        fi
+
+        if [ ! -s "drivers/misc/ntsync.c" ]; then
+          echo "ERROR: ntsync.c is empty or missing"
+          exit 1
+        fi
+        if [ ! -s "include/uapi/linux/ntsync.h" ]; then
+          echo "ERROR: ntsync.h is empty or missing"
+          exit 1
+        fi
+
+        echo "ntsync source files fetched successfully"
+
+    - name: Verify and fix ntsync Makefile entry
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel/common
+      run: |
+        set -euo pipefail
+        MAKEFILE="drivers/misc/Makefile"
+
+        if grep -q "CONFIG_NTSYNC" "$MAKEFILE"; then
+          echo "ntsync already in Makefile"
+        else
+          echo 'obj-$(CONFIG_NTSYNC) += ntsync.o' >> "$MAKEFILE"
+          echo "Added ntsync to Makefile"
+        fi
+
+        # Verify it's properly formatted
+        grep "CONFIG_NTSYNC" "$MAKEFILE" || {
+          echo "ERROR: ntsync Makefile entry not found after application"
+          exit 1
+        }
+
+    - name: Verify and fix ntsync Kconfig entry
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel/common
+      run: |
+        set -euo pipefail
+        KCONFIG="drivers/misc/Kconfig"
+
+        if grep -q "config NTSYNC" "$KCONFIG"; then
+          echo "ntsync already in Kconfig"
+        else
+          cat >> "$KCONFIG" << 'KEOF'
+
+config NTSYNC
+	tristate "NT synchronization primitive emulation"
+	depends on !UML
+	help
+	  This module provides kernel support for emulating NT synchronization
+	  primitives. This is used by Wine/Proton and Droidspaces containers
+	  to run Windows applications on Android.
+
+	  To compile this driver as a module, choose M here: the module will
+	  be called ntsync.
+
+KEOF
+          echo "Added ntsync to Kconfig"
+        fi
+
+        # Verify it's properly formatted
+        grep "config NTSYNC" "$KCONFIG" || {
+          echo "ERROR: ntsync Kconfig entry not found after application"
+          exit 1
+        }
+
+    - name: Enable NTSYNC config
+      shell: bash
+      working-directory: ${{ github.workspace }}/kernel
+      run: |
+        cat >> "${{ github.workspace }}/wild_gki.fragment" << 'EOF'
+        # NTSYNC - Windows NT sync primitives for Wine/Droidspaces
+        CONFIG_NTSYNC=y
+        EOF

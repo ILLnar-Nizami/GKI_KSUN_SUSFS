@@ -25,4 +25,7 @@ runs:
         CONFIG_KALLSYMS_ALL=y
 
         # CONFIG_TRIM_UNUSED_KSYMS is not set
+
+        # User Namespaces (required for Droidspaces, containers, and ntsync)
+        CONFIG_USER_NS=y
         EOF
