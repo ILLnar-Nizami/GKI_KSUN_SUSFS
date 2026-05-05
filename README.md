@@ -106,7 +106,7 @@ Flashing this kernel will void your warranty, and there is always a risk of bric
 
 ## 📱 Connect
 
-[![Telegram](https://img.shields.io/badge/Telegram-ILLnar--Nizami-blue?logo=telegram)](https://t.me/ILLnar-Nizami)
+[![Telegram](https://img.shields.io/badge/Telegram-ILLnar-blue?logo=telegram)](https://t.me/ILLnar)
 
 </div>
 
