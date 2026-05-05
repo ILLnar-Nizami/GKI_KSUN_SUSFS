@@ -1,5 +1,5 @@
 name: 'Apply Kernel Branding & Timestamp'
-  description: 'Apply DUSK kernel branding to kernel version string'
+description: 'Apply DUSK kernel branding to kernel version string'
 inputs:
   variant:
     description: 'Variant of kernel to apply branding to'
@@ -44,7 +44,7 @@ runs:
         else
           if grep -q '^CONFIG_LOCALVERSION=' "$DEFCONFIG"; then
             LOCALVERSION_VALUE="$(grep -m1 '^CONFIG_LOCALVERSION=' "$DEFCONFIG" | sed -E 's/^CONFIG_LOCALVERSION="?([^"]*)"?$/\1/')"
-           echo "CONFIG_LOCALVERSION=\"${LOCALVERSION_VALUE}-DUSK\"" >> "$CONFIG_FRAGMENT"
+            echo "CONFIG_LOCALVERSION=\"${LOCALVERSION_VALUE}-DUSK\"" >> "$CONFIG_FRAGMENT"
           else
             echo 'CONFIG_LOCALVERSION="-DUSK"' >> "$CONFIG_FRAGMENT"
           fi
@@ -54,13 +54,12 @@ runs:
 
         echo "Getting last commit timestamp from kernel source..."
 
-
         COMMIT_TIMESTAMP=$(git log -1 --format=%ct 2>/dev/null || echo "$(date +%s)")
         KERNEL_BUILD_DATE=$(date -u)
 
         export SOURCE_DATE_EPOCH=$COMMIT_TIMESTAMP
         echo "SOURCE_DATE_EPOCH=$COMMIT_TIMESTAMP" >> $GITHUB_ENV
-        
+
         export KBUILD_BUILD_TIMESTAMP="$KERNEL_BUILD_DATE"
         echo "KBUILD_BUILD_TIMESTAMP=$KERNEL_BUILD_DATE" >> $GITHUB_ENV
 
