@@ -53,7 +53,7 @@ on:
           - All
           - Normal
           - Bypass
-          - Wild
+          - DUSK
         default: Normal
       use_repo:
         description: "Use repo for downloading kernel source"
@@ -214,7 +214,7 @@ jobs:
 
     env:
       GH_TOKEN: ${{ github.token }}
-      RELEASE_NAME: "GKI Kernels With KernelSU-Next & SUSFS v2.1.0"
+        RELEASE_NAME: "DUSK Kernel - Droidspaces, sUsfs, ntSync, Kernel"
       RELEASE_BODY: ""
     outputs:
       new_tag: ${{ steps.tag.outputs.new_tag }}
@@ -448,6 +448,25 @@ jobs:
           cd - >/dev/null
         done
 
+    - name: Generate SHA256 Checksums
+      run: |
+        set -e
+        cd release-assets
+        shopt -s globstar nullglob
+        CHECKSUM_FILE="../SHA256SUMS.txt"
+        : > "$CHECKSUM_FILE"
+        for f in **/*.zip **/*-boot*.img; do
+          [ -f "$f" ] || continue
+          sha256sum "$f" >> "$CHECKSUM_FILE"
+        done
+        if [ -s "$CHECKSUM_FILE" ]; then
+          echo "Generated SHA256 checksums:"
+          cat "$CHECKSUM_FILE"
+        else
+          echo "No artifacts found for checksum generation"
+        fi
+        cd - >/dev/null
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
@@ -459,3 +478,4 @@ jobs:
         files: |
           release-assets/**/*.zip
           release-assets/**/*-boot*.img
+          SHA256SUMS.txt

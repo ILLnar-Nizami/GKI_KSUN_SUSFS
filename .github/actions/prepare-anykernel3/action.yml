@@ -1,9 +1,40 @@
 name: 'Prepare AnyKernel3'
-description: 'Copies built Image into AnyKernel3 folder'
+description: 'Copies built Image into AnyKernel3 folder and replaces WildKernel branding with DUSK'
 
 runs:
   using: composite
   steps:
+    - shell: bash
+      run: |
+        set -euo pipefail
+
+        # Replace WildKernel ASCII logo with DUSK ASCII logo
+        if [ -f "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh" ]; then
+          # Remove WildKernel ASCII banner if present
+          sed -i '/#.*WildKernel/,/^$/d' "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh" 2>/dev/null || true
+
+          # Check that the DUSK ASCII art file exists
+          if [ ! -f "$GITHUB_WORKSPACE/.github/assets/dusk_ascii.txt" ]; then
+            echo "ERROR: dusk_ascii.txt not found in .github/assets/"
+            exit 1
+          fi
+
+          # Prepend ASCII art to anykernel.sh (preserving shebang if present)
+          if head -n1 "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh" | grep -q '^#!'; then
+            (head -n1 "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh" && \
+             cat "$GITHUB_WORKSPACE/.github/assets/dusk_ascii.txt" && \
+             tail -n+2 "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh") > /tmp/anykernel_new.sh
+            mv /tmp/anykernel_new.sh "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh"
+          else
+            cat "$GITHUB_WORKSPACE/.github/assets/dusk_ascii.txt" "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh" > /tmp/anykernel_new.sh
+            mv /tmp/anykernel_new.sh "$GITHUB_WORKSPACE/AnyKernel3/anykernel.sh"
+          fi
+
+          echo "DUSK ASCII logo inserted into anykernel.sh"
+        fi
+
+        echo "AnyKernel3 branding updated to DUSK"
+
     - shell: bash
       run: |
         set -euo pipefail

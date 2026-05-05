@@ -48,7 +48,7 @@ body:
         label: Manager
         description: Which KernelSU manager you're using
         options:
-          - Wild KSU
+          - DUSK Kernel (KSUN)
           - KernelSU Next
           - KernelSU
           - MKSU

@@ -1,10 +1,10 @@
-name: Setup Wild KSU
-description: Download and configure Wild KSU with version tracking
+name: Setup KernelSU-Next
+description: Download and configure KernelSU-Next (KSUN) with version tracking
 
 runs:
   using: composite
   steps:
-    - name: Download Wild KSU
+    - name: Download KernelSU-Next
       shell: bash
       working-directory: ${{ github.workspace }}/kernel
       run: |

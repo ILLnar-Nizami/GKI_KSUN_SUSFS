@@ -12,7 +12,7 @@ on:
         required: false
         type: string
       variant:
-        description: "Build Variant (All, Normal, Bypass, Wild)"
+        description: "Build Variant (All, Normal, Bypass, DUSK)"
         required: false
         type: string
       use_repo:
@@ -43,7 +43,7 @@ jobs:
 
           # Build the variant list as a JSON array
           if [ "${{ inputs.variant }}" = "All" ] || [ -z "${{ inputs.variant }}" ]; then
-            VARIANTS='["Normal","Bypass","Wild"]'
+            VARIANTS='["Normal","Bypass","DUSK"]'
           else
             VARIANTS=$(jq -cn --arg v "${{ inputs.variant }}" '[$v]')
           fi
