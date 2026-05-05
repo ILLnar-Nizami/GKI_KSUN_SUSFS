@@ -34,7 +34,7 @@ By flashing this kernel, **YOU** are choosing to make these modifications. If so
 
 ## 📋 DUSK Glossary
 
-**DUSK** = **D**roidspaces + **U**serspace s**U**fs + **S**ync (nt) + **K**ernel
+**DUSK** = **D**roidspaces + s**U**sfs + nt**S**ync + **K**ernel
 
 | Component | Description |
 |-----------|-------------|
