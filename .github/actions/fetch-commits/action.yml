@@ -76,13 +76,13 @@ runs:
         echo "KernelSU-Next Tag: ${KSUN_TAG:-None}"
         echo "ksu_tag=$KSUN_TAG" >> $GITHUB_OUTPUT
         
-        # AnyKernel3
-        AK3_COMMIT=$(get_commit "https://github.com/WildKernels/AnyKernel3.git" "refs/heads/gki-2.0")
+        # AnyKernel3 (DUSK fork)
+        AK3_COMMIT=$(get_commit "https://github.com/ILLnar-Nizami/dusk_kernel.git" "refs/heads/gki-2.0")
         echo "AnyKernel3: $AK3_COMMIT"
         echo "anykernel_commit=$AK3_COMMIT" >> $GITHUB_OUTPUT
-        
-        # Kernel Patches
-        PATCHES_COMMIT=$(get_commit "https://github.com/WildKernels/kernel_patches.git" "HEAD")
+
+        # Kernel Patches (DUSK fork)
+        PATCHES_COMMIT=$(get_commit "https://github.com/ILLnar-Nizami/dusk_kernel.git" "HEAD")
         echo "Kernel Patches: $PATCHES_COMMIT"
         echo "patches_commit=$PATCHES_COMMIT" >> $GITHUB_OUTPUT
         
