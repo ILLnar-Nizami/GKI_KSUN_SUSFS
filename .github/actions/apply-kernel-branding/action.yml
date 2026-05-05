@@ -20,17 +20,22 @@ runs:
     - name: Apply Kernel Name Branding
       shell: bash
       working-directory: ${{ github.workspace }}/kernel/common
+      env:
+        VARIANT: ${{ inputs.variant }}
+        KERNEL_VER: ${{ inputs.kernel_version }}
+        SUBLEVEL_VAL: ${{ inputs.sublevel }}
+        ANDROID_VER: ${{ inputs.android_version }}
       run: |
         CONFIG_FRAGMENT="${GITHUB_WORKSPACE}/wild_gki.fragment"
         touch "$CONFIG_FRAGMENT"
 
         DEFCONFIG="${GITHUB_WORKSPACE}/kernel/common/arch/arm64/configs/gki_defconfig"
 
-        if [ "${{ inputs.variant }}" == "DUSK" ]; then
+        if [ "$VARIANT" = "DUSK" ]; then
           tac scripts/setlocalversion | awk '!seen && /^echo / {seen=1; next} 1' | tac > scripts/setlocalversion.tmp
           mv scripts/setlocalversion.tmp scripts/setlocalversion
-          if [[ ${{ inputs.kernel_version }} == "6.6" || ${{ inputs.kernel_version }} == "6.12" ]]; then
-            KERNEL_STRING="${{ inputs.kernel_version }}.${{ inputs.sublevel }}-${{ inputs.android_version }}"
+          if [[ "$KERNEL_VER" == "6.6" || "$KERNEL_VER" == "6.12" ]]; then
+            KERNEL_STRING="${KERNEL_VER}.${SUBLEVEL_VAL}-${ANDROID_VER}"
             echo "echo \"$KERNEL_STRING-DUSK\"" >> scripts/setlocalversion
           else
             echo 'echo "-DUSK"' >> scripts/setlocalversion
