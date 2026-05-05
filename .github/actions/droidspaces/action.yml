@@ -35,8 +35,7 @@ runs:
         CONFIG_SYSVIPC=y
         CONFIG_POSIX_MQUEUE=y
 
-        # Namespaces (USER_NS required for Pixel 6 - stock GKI disables it)
-        CONFIG_USER_NS=y
+        # Namespaces (USER_NS is set in misc/action.yml for all builds)
         CONFIG_IPC_NS=y
         CONFIG_PID_NS=y
 
