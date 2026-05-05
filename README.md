@@ -28,7 +28,7 @@ By flashing this kernel, **YOU** are choosing to make these modifications. If so
 
 | Kernel | Repository | Status |
 |--------|------------|--------|
-| 🌑 **DUSK GKI** | [GKI_KSUN_SUSFS](https://github.com/ILLnar-Nizami/GKI_KSUN_SUSFS) | ✅ Active |
+| 🌑 **DUSK** | [dusk_kernel](https://github.com/ILLnar-Nizami/dusk_kernel) | ✅ Active |
 
 ---
 
@@ -118,7 +118,7 @@ Flashing this kernel will void your warranty, and there is always a risk of bric
 
 | Contributor / Project | Role / Contribution |
 |----------------------|---------------------|
-| 🌑 **DUSK Kernel (ILLnar-Nizami)** | Maintainer — [GKI_KSUN_SUSFS](https://github.com/ILLnar-Nizami/GKI_KSUN_SUSFS) |
+| 🌑 **DUSK Kernel (ILLnar-Nizami)** | Maintainer — [dusk_kernel](https://github.com/ILLnar-Nizami/dusk_kernel) |
 | 🩹 **kernel_patches** (WildKernels) | Kernel patches & CI templates — [repo](https://github.com/WildKernels/kernel_patches) |
 | 📦 **AnyKernel3** (WildKernels) | AnyKernel3 gki-2.0 branch — [repo](https://github.com/WildKernels/AnyKernel3) |
 | 🔐 **KernelSU-Next** (rifsxd) | Kernel-mode root — [repo](https://github.com/KernelSU-Next/KernelSU-Next) |
@@ -135,7 +135,9 @@ Flashing this kernel will void your warranty, and there is always a risk of bric
 
 Any and all donations are appreciated — they keep DUSK Kernel maintained and updated!
 
-- **PayPal**: [nizametdinov@gmail.com](mailto:nizametdinov.com)
+- **PayPal**: [nizametdinov@gmail.com](mailto:nizametdinov@gmail.com)
 - **Ko-Fi**: <https://ko-fi.com/illnar>
-- **bunq**: <https://bunq.me/INizametdinov>
-- **Revolut**:`@illnar_nizami`
+- **Bunq**: <https://bunq.me/INizametdinov>
+- **Revolut**: `@illnar_nizami`
+
+</div>
